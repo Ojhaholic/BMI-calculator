@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 10px;
+            background-color:  #ffaadc;
+        }
+        .cont{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color:  #212121;
+            height: 100vh;
+            width: 100%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form button {
+            cursor: pointer;
+        }
+
+        form input {
+            padding: 0.3rem;
+        }
+
+        .result {
+            border: 1px solid black;
+            padding: 0.2rem;
+            width: 140px;
+            height: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="cont">
+    <div class="card">
+        <h1>BMI Calculator</h1>
+        <form>
+            <p><label>Height in CM: </label><input type="text" class="height"></p><br><br>
+            <p><label>Weight in KG: </label><input type="text" class="weight"></p><br><br>
+            <button>
+                <h3>&nbsp;Calculate&nbsp;</h3>
+            </button><br>
+            <div class="result hidden"></div>
+        </form>
+        <div class="guide">
+            <hr><br>
+            <h2>BMI Weight Guide</h2><br>
+            <h5>Under weight = Less than 18.6</h5>
+            <h5>Normal Range = 18.6 - 24.9</h5>
+            <h5>Overweight = Greater than 24.9</h5>
+            <br>
+            <hr>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+<script>
+
+    const form = document.querySelector("form")
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+
+        const height = parseInt(document.querySelector(".height").value)
+        const weight = parseInt(document.querySelector(".weight").value)
+        const result = document.querySelector(".result")
+
+        if (height === " " || height <= 0 || isNaN(height)) {
+            result.innerHTML = "Enter valid height";
+        } else if (weight === " " || weight <= 0 || isNaN(weight)) {
+            result.innerHTML = "Enter valid weight";
+        } else {
+            const BMI = (weight / ((height / 100) * (height / 100))).toFixed(2)
+            result.innerHTML = BMI
+
+        }
+
+    })
+
+
+</script>
+
+</html>
